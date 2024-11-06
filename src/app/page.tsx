@@ -1,5 +1,8 @@
 import { MatrixRain } from "@/components/animations/MatrixRain";
 import Link from "next/link";
+
+import { LoginLink } from "@kinde-oss/kinde-auth-nextjs/components"
+import { Button } from "@/components/ui/button"
 export default function Home() {
   return (
     <div className="">
@@ -30,7 +33,15 @@ export default function Home() {
           </Link>
         </div>
 
-
+        <div className="flex justify-center ">        
+          <Button
+              asChild
+              variant="outline"
+              className="rounded-full w-1/3 px-6 py-6 text-lg border-2 mt-6 border-notfound-white text-notfound-white hover:text-red-600 bg-matrix-glow"
+          >
+              <LoginLink>Employee Sign In</LoginLink>
+          </Button>
+        </div>
       </main>
 
 
