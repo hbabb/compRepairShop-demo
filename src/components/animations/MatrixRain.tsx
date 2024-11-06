@@ -75,7 +75,7 @@ export const MatrixRain = ({ className = '' }: MatrixRainProps) => {
       <div className="absolute inset-0 -z-15 bg-matrix-dark" />
       <canvas
         ref={canvasRef}
-        className={`fixed inset-0 -z-5 ${className}`}
+        className={`fixed inset-0 -z-1 ${className}`}
         style={{ mixBlendMode: 'screen' }}
       />
     </div>
