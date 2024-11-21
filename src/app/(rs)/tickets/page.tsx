@@ -1,13 +1,11 @@
 export const metadata = {
-    title: "tickets",
-}
+  title: 'tickets',
+};
 
 export default function Tickets() {
-    return (
-        <div>
-            <h2>
-                Tickets Page
-            </h2>
-        </div>
-    )
+  return (
+    <div>
+      <h2>Tickets Page</h2>
+    </div>
+  );
 }
