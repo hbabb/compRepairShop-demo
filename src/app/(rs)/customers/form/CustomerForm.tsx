@@ -1,25 +1,25 @@
-'use client';
+'use client'
 
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { Form } from '@/components/ui/form';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/button'
+import { Form } from '@/components/ui/form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
 
-import { InputWithLabel } from '@/components/inputs/InputWithLabel';
-import { TextAreaWithLabel } from '@/components/inputs/TextAreaWithLabel';
-import { SelectWithLabel } from '@/components/inputs/SelectWithLabel';
+import { InputWithLabel } from '@/components/inputs/InputWithLabel'
+import { SelectWithLabel } from '@/components/inputs/SelectWithLabel'
+import { TextAreaWithLabel } from '@/components/inputs/TextAreaWithLabel'
 
-import { StatesArray } from '@/constants/StatesArray';
+import { StatesArray } from '@/constants/StatesArray'
 
 import {
   insertCustomerSchema,
   type insertCustomerSchemaType,
   type selectCustomerSchemaType,
-} from '@/zod-schemas/customer';
+} from '@/zod-schemas/customer'
 
 type Props = {
-  customer?: selectCustomerSchemaType;
-};
+  customer?: selectCustomerSchemaType
+}
 
 export default function CustomerForm({ customer }: Props) {
   const defaultValues: insertCustomerSchemaType = {
@@ -34,37 +34,56 @@ export default function CustomerForm({ customer }: Props) {
     state: customer?.state ?? '',
     zip: customer?.zip ?? '',
     notes: customer?.notes ?? '',
-  };
+  }
 
   const form = useForm<insertCustomerSchemaType>({
     mode: 'onBlur',
     resolver: zodResolver(insertCustomerSchema),
     defaultValues,
-  });
+  })
 
   async function submitForm(data: insertCustomerSchemaType) {
-    console.log(data);
+    console.log(data)
   }
 
   return (
     <div className="flex flex-col gap-1 sm:px-8">
       <div>
-        <h2 className="text-2xl font-bold">{customer?.id ? 'Edit' : 'New'} Customer Form</h2>
+        <h2 className="font-bold text-2xl">{customer?.id ? 'Edit' : 'New'} Customer Form</h2>
       </div>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(submitForm)} className="flex flex-col gap-4 md:flex-row md:gap-8">
+        <form
+          onSubmit={form.handleSubmit(submitForm)}
+          className="flex flex-col gap-4 md:flex-row md:gap-8"
+        >
           <div className="flex w-full max-w-xs flex-col gap-4">
-            <InputWithLabel<insertCustomerSchemaType> fieldTitle="First Name" nameInSchema="firstName" />
+            <InputWithLabel<insertCustomerSchemaType>
+              fieldTitle="First Name"
+              nameInSchema="firstName"
+            />
 
-            <InputWithLabel<insertCustomerSchemaType> fieldTitle="Last Name" nameInSchema="lastName" />
+            <InputWithLabel<insertCustomerSchemaType>
+              fieldTitle="Last Name"
+              nameInSchema="lastName"
+            />
 
-            <InputWithLabel<insertCustomerSchemaType> fieldTitle="Address 1" nameInSchema="address1" />
+            <InputWithLabel<insertCustomerSchemaType>
+              fieldTitle="Address 1"
+              nameInSchema="address1"
+            />
 
-            <InputWithLabel<insertCustomerSchemaType> fieldTitle="Address 2" nameInSchema="address2" />
+            <InputWithLabel<insertCustomerSchemaType>
+              fieldTitle="Address 2"
+              nameInSchema="address2"
+            />
 
             <InputWithLabel<insertCustomerSchemaType> fieldTitle="City" nameInSchema="city" />
 
-            <SelectWithLabel<insertCustomerSchemaType> fieldTitle="State" nameInSchema="state" data={StatesArray} />
+            <SelectWithLabel<insertCustomerSchemaType>
+              fieldTitle="State"
+              nameInSchema="state"
+              data={StatesArray}
+            />
           </div>
 
           <div className="flex w-full max-w-xs flex-col gap-4">
@@ -74,14 +93,23 @@ export default function CustomerForm({ customer }: Props) {
 
             <InputWithLabel<insertCustomerSchemaType> fieldTitle="Phone" nameInSchema="phone" />
 
-            <TextAreaWithLabel<insertCustomerSchemaType> fieldTitle="Notes" nameInSchema="notes" className="h-40" />
+            <TextAreaWithLabel<insertCustomerSchemaType>
+              fieldTitle="Notes"
+              nameInSchema="notes"
+              className="h-40"
+            />
 
             <div className="flex gap-2">
               <Button type="submit" className="w-3/4" variant="default" title="Save">
                 Save
               </Button>
 
-              <Button type="button" variant="destructive" title="Reset" onClick={() => form.reset(defaultValues)}>
+              <Button
+                type="button"
+                variant="destructive"
+                title="Reset"
+                onClick={() => form.reset(defaultValues)}
+              >
                 Reset
               </Button>
             </div>
@@ -89,5 +117,5 @@ export default function CustomerForm({ customer }: Props) {
         </form>
       </Form>
     </div>
-  );
+  )
 }

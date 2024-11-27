@@ -58,4 +58,4 @@ export const StatesArray = [
   { id: 'FM', description: 'Federated States of Micronesia' },
   { id: 'MH', description: 'Marshall Islands' },
   { id: 'PW', description: 'Palau' },
-];
+]

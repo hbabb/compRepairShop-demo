@@ -1,8 +1,14 @@
 {
+  "editor.defaultFormatter": "biomejs.biome",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "quickfix.biome": "explicit"
+  },
   "cSpell.words": [
     "babbtech",
     "clsx",
     "commitlint",
+    "Instantiator",
     "Kinde",
     "lucide",
     "neondatabase",
@@ -12,5 +18,8 @@
     "repairshop",
     "tailwindcss",
     "turbopack"
-  ]
+  ],
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  }
 }

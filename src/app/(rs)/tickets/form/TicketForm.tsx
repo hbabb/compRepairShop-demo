@@ -1,22 +1,25 @@
-'use client';
+'use client'
 
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { Form } from '@/components/ui/form';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/button'
+import { Form } from '@/components/ui/form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
 
-import { InputWithLabel } from '@/components/inputs/InputWithLabel';
-import { TextAreaWithLabel } from '@/components/inputs/TextAreaWithLabel';
-import { SelectWithLabel } from '@/components/inputs/SelectWithLabel';
+import { InputWithLabel } from '@/components/inputs/InputWithLabel'
+import { TextAreaWithLabel } from '@/components/inputs/TextAreaWithLabel'
 
-import { insertTicketSchema, type insertTicketSchemaType, type selectTicketSchemaType } from '@/zod-schemas/ticket';
-import { selectCustomerSchemaType } from '@/zod-schemas/customer';
-import { CheckboxWithLabel } from '@/components/inputs/CheckBoxWithLabel';
+import { CheckboxWithLabel } from '@/components/inputs/CheckBoxWithLabel'
+import type { selectCustomerSchemaType } from '@/zod-schemas/customer'
+import {
+  insertTicketSchema,
+  type insertTicketSchemaType,
+  type selectTicketSchemaType,
+} from '@/zod-schemas/ticket'
 
 type Props = {
-  customer: selectCustomerSchemaType;
-  ticket?: selectTicketSchemaType;
-};
+  customer: selectCustomerSchemaType
+  ticket?: selectTicketSchemaType
+}
 
 export default function TicketForm({ customer, ticket }: Props) {
   const defaultValues: insertTicketSchemaType = {
@@ -26,31 +29,44 @@ export default function TicketForm({ customer, ticket }: Props) {
     description: ticket?.description ?? '',
     completed: ticket?.completed ?? false,
     tech: ticket?.tech ?? 'new-ticket@example.com',
-  };
+  }
 
   const form = useForm<insertTicketSchemaType>({
     mode: 'onBlur',
     resolver: zodResolver(insertTicketSchema),
     defaultValues,
-  });
+  })
 
   async function submitForm(data: insertTicketSchemaType) {
-    console.log(data);
+    console.log(data)
   }
 
   return (
     <div className="flex flex-col gap-1 sm:px-8">
       <div>
-        <h2 className="text-2xl font-bold">{ticket?.id ? `Edit Ticket #${ticket.id}` : 'New Ticket Form'}</h2>
+        <h2 className="font-bold text-2xl">
+          {ticket?.id ? `Edit Ticket #${ticket.id}` : 'New Ticket Form'}
+        </h2>
       </div>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(submitForm)} className="flex flex-col gap-4 md:flex-row md:gap-8">
+        <form
+          onSubmit={form.handleSubmit(submitForm)}
+          className="flex flex-col gap-4 md:flex-row md:gap-8"
+        >
           <div className="flex w-full max-w-xs flex-col gap-4">
             <InputWithLabel<insertTicketSchemaType> fieldTitle="Title" nameInSchema="title" />
 
-            <InputWithLabel<insertTicketSchemaType> fieldTitle="Technician" nameInSchema="tech" disabled={true} />
+            <InputWithLabel<insertTicketSchemaType>
+              fieldTitle="Technician"
+              nameInSchema="tech"
+              disabled={true}
+            />
 
-            <CheckboxWithLabel<insertTicketSchemaType> fieldTitle="Completed" nameInSchema="completed" message="Yes" />
+            <CheckboxWithLabel<insertTicketSchemaType>
+              fieldTitle="Completed"
+              nameInSchema="completed"
+              message="Yes"
+            />
 
             <div className="mt-4 space-y-2">
               <h3 className="text-lg">Customer Information</h3>
@@ -81,7 +97,12 @@ export default function TicketForm({ customer, ticket }: Props) {
                 Save
               </Button>
 
-              <Button type="button" variant="destructive" title="Reset" onClick={() => form.reset(defaultValues)}>
+              <Button
+                type="button"
+                variant="destructive"
+                title="Reset"
+                onClick={() => form.reset(defaultValues)}
+              >
                 Reset
               </Button>
             </div>
@@ -89,5 +110,5 @@ export default function TicketForm({ customer, ticket }: Props) {
         </form>
       </Form>
     </div>
-  );
+  )
 }

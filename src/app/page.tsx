@@ -1,8 +1,8 @@
-import { MatrixRain } from '@/components/animations/MatrixRain';
-import Link from 'next/link';
+import { MatrixRain } from '@/components/animations/MatrixRain'
+import Link from 'next/link'
 
-import { LoginLink } from '@kinde-oss/kinde-auth-nextjs/components';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/button'
+import { LoginLink } from '@kinde-oss/kinde-auth-nextjs/components'
 export default function Home() {
   return (
     <div className="">
@@ -10,7 +10,7 @@ export default function Home() {
 
       <main className="mx-auto flex h-dvh max-w-5xl flex-col justify-center text-center">
         <div className="mx-auto flex w-4/5 flex-col gap-6 rounded-xl border border-green-500/20 bg-black/40 bg-gradient-to-br from-green-500/[0.15] to-black/50 p-6 font-code shadow-[0_0_15px_rgba(0,255,0,0.07)] ring-1 ring-green-500/30 backdrop-blur-md sm:max-w-96 sm:text-2xl">
-          <h1 className="text-4xl font-bold text-slate-50">
+          <h1 className="font-bold text-4xl text-slate-50">
             Dan&apos;s Computer
             <br />
             Repair Shop
@@ -36,5 +36,5 @@ export default function Home() {
         </div>
       </main>
     </div>
-  );
+  )
 }

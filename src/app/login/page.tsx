@@ -1,5 +1,5 @@
-import { LoginLink } from '@kinde-oss/kinde-auth-nextjs/components';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/button'
+import { LoginLink } from '@kinde-oss/kinde-auth-nextjs/components'
 
 export default function LoginPage() {
   return (
@@ -13,5 +13,5 @@ export default function LoginPage() {
         <LoginLink>Sign In</LoginLink>
       </Button>
     </main>
-  );
+  )
 }
