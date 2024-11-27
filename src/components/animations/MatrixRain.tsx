@@ -19,7 +19,8 @@ export const MatrixRain = ({ className = '' }: MatrixRainProps) => {
     canvas.width = window.innerWidth
     canvas.height = window.innerHeight
 
-    const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン'
+    const katakana =
+      'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン'
     const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
     const nums = '0123456789'
     const alphabet = katakana + latin + nums
@@ -71,11 +72,11 @@ export const MatrixRain = ({ className = '' }: MatrixRainProps) => {
   }, [])
 
   return (
-    <div className="fixed inset-0 -z-20">
-      <div className="absolute inset-0 -z-15 bg-matrix-dark" />
+    <div className="-z-20 fixed inset-0">
+      <div className="-z-15 absolute inset-0 bg-matrix-dark" />
       <canvas
         ref={canvasRef}
-        className={`fixed inset-0 -z-1 ${className}`}
+        className={`-z-1 fixed inset-0 ${className}`}
         style={{ mixBlendMode: 'screen' }}
       />
     </div>

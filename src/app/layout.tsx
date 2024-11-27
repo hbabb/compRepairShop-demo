@@ -1,51 +1,51 @@
-import type { Metadata } from "next";
-import localFont from "next/font/local";
-import { AuthProvider } from "@/components/auth/AuthProvider";
-import { ThemeProvider } from "@/components/layout/theme-provider";
-import "./globals.css";
+import { AuthProvider } from '@/components/auth/AuthProvider'
+import { ThemeProvider } from '@/components/layout/theme-provider'
+import type { Metadata } from 'next'
+import localFont from 'next/font/local'
+import './globals.css'
 
 const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
+  src: './fonts/GeistVF.woff',
+  variable: '--font-geist-sans',
+  weight: '100 900',
+})
 const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+  src: './fonts/GeistMonoVF.woff',
+  variable: '--font-geist-mono',
+  weight: '100 900',
+})
 
 const inter = localFont({
-  src: "./fonts/InterVariable.woff2",
-  variable: "--font-inter",
-  weight: "100 900",
-});
+  src: './fonts/InterVariable.woff2',
+  variable: '--font-inter',
+  weight: '100 900',
+})
 
 const interItalic = localFont({
-  src: "./fonts/InterVariable-Italic.woff2",
-  variable: "--font-inter-italic",
-  weight: "100 900",
-});
+  src: './fonts/InterVariable-Italic.woff2',
+  variable: '--font-inter-italic',
+  weight: '100 900',
+})
 
 const firaCode = localFont({
-  src: "./fonts/FiraCode-VF.woff2",
-  variable: "--font-fira-code",
-  weight: "100 900",
-});
+  src: './fonts/FiraCode-VF.woff2',
+  variable: '--font-fira-code',
+  weight: '100 900',
+})
 
 export const metadata: Metadata = {
   title: {
     template: '%s | Computer Repair Shop',
-    default: "Computer Repair Shop",
+    default: 'Computer Repair Shop',
   },
-  description: "Computer Repair Shop - Demo",
-  applicationName: "RepairShop-Demo",
-};
+  description: 'Computer Repair Shop - Demo',
+  applicationName: 'RepairShop-Demo',
+}
 
 export default async function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
     <AuthProvider>
@@ -61,9 +61,8 @@ export default async function RootLayout({
           >
             {children}
           </ThemeProvider>
-          
         </body>
       </html>
     </AuthProvider>
-  );
+  )
 }
