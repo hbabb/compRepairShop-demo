@@ -5,9 +5,12 @@ import { Form } from '@/components/ui/form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 
+import { CheckboxWithLabel } from '@/components/inputs/CheckBoxWithLabel'
 import { InputWithLabel } from '@/components/inputs/InputWithLabel'
 import { SelectWithLabel } from '@/components/inputs/SelectWithLabel'
 import { TextAreaWithLabel } from '@/components/inputs/TextAreaWithLabel'
+
+import { useKindeBrowserClient } from '@kinde-oss/kinde-auth-nextjs'
 
 import { StatesArray } from '@/constants/StatesArray'
 
@@ -22,6 +25,9 @@ type Props = {
 }
 
 export default function CustomerForm({ customer }: Props) {
+  const { getPermission, isLoading } = useKindeBrowserClient()
+  const isManager = !isLoading && getPermission('manager')?.isGranted
+
   const defaultValues: insertCustomerSchemaType = {
     id: customer?.id ?? 0,
     firstName: customer?.firstName ?? '',
@@ -34,6 +40,7 @@ export default function CustomerForm({ customer }: Props) {
     state: customer?.state ?? '',
     zip: customer?.zip ?? '',
     notes: customer?.notes ?? '',
+    active: customer?.active ?? true,
   }
 
   const form = useForm<insertCustomerSchemaType>({
@@ -49,7 +56,9 @@ export default function CustomerForm({ customer }: Props) {
   return (
     <div className="flex flex-col gap-1 sm:px-8">
       <div>
-        <h2 className="font-bold text-2xl">{customer?.id ? 'Edit' : 'New'} Customer Form</h2>
+        <h2 className="font-bold text-2xl">
+          {customer?.id ? 'Edit' : 'New'} Customer {customer?.id ? `#${customer.id}` : 'Form'}
+        </h2>
       </div>
       <Form {...form}>
         <form
@@ -98,6 +107,16 @@ export default function CustomerForm({ customer }: Props) {
               nameInSchema="notes"
               className="h-40"
             />
+
+            {isLoading ? (
+              <p>Loading...</p>
+            ) : isManager && customer?.id ? (
+              <CheckboxWithLabel<insertCustomerSchemaType>
+                fieldTitle="Active"
+                nameInSchema="active"
+                message="Yes"
+              />
+            ) : null}
 
             <div className="flex gap-2">
               <Button type="submit" className="w-3/4" variant="default" title="Save">
